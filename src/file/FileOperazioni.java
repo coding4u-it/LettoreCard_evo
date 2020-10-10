@@ -14,7 +14,7 @@ public class FileOperazioni {
         try {
             outputStream= new PrintWriter(new FileOutputStream(nomeFile,ap));
         } 
-        catch (Exception e){
+        catch (FileNotFoundException e){
             tmp="file di testo non trovato";
         }
         outputStream.println(testo);
@@ -28,7 +28,7 @@ public class FileOperazioni {
         try {
             inputStream=new Scanner (new File(nomeFile));
         }
-        catch (Exception e){
+        catch (FileNotFoundException e){
             return tmp="File di lettura non trovato";
         }
         while(inputStream.hasNextLine()){
@@ -41,7 +41,5 @@ public class FileOperazioni {
 
     public String getNomeFile() {
         return nomeFile;
-    }
-    
-    
+    }  
 }
