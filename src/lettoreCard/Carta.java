@@ -38,7 +38,7 @@ public class Carta {
     private CardTerminal terminal;
     private Card card;
     private CardChannel channel;
-    private int a=64;//64
+    private int a=24;//64
     private ResponseAPDU answer;
     
     public Carta(){}
@@ -122,7 +122,6 @@ public class Carta {
         StringBuilder sb = new StringBuilder();
         for (byte ab : bytes) 
             sb.append(String.format("%02x", ab));
-        //System.out.println("bytes->hex: "+sb.toString());
         return sb.toString();
     }
     
@@ -136,7 +135,6 @@ public class Carta {
         byte[] data = new byte[len / 2];
         for (int i = 0; i < len; i += 2)
             data[i/2] = (byte)((Character.digit(s.charAt(i), 16) << 4) + Character.digit(s.charAt(i+1),16));
-        //System.out.println("hex.>bytes: "+data);
         return data;
     }
     
@@ -145,8 +143,7 @@ public class Carta {
      * @return 
      */
     public String carattere(){
-        String tmp= ""+bytesToHex(answer.getBytes()).charAt(a)+""+bytesToHex(answer.getBytes()).charAt(a+1);
-        //System.out.println("char:"+ tmp);
+        String tmp=""+bytesToHex(answer.getBytes()).charAt(a)+""+bytesToHex(answer.getBytes()).charAt(a+1);
       return tmp;
     }
     
@@ -158,7 +155,6 @@ public class Carta {
     public int numero(String cf){
         String num=(char)Integer.parseInt(cf, 16)+"";
         num+=(char)Integer.parseInt(carattere(), 16); 
-        //System.out.println("numero: "+Integer.parseInt(num,16));
         return Integer.parseInt(num,16);
     }
     
@@ -182,7 +178,7 @@ public class Carta {
                 String cf =carattere();
                 if (answer.getSW1()==0x90 && answer.getSW2()==0x00){
                     a+=2;
-                    if(off==0 && conta<11){
+                    if(off==0 && conta<13){
                         off=numero(cf);
                         off1+=off;
                         a+=2;
@@ -196,7 +192,7 @@ public class Carta {
                         off--;
                     }
                 }
-                if (conta==11 && off==0){
+                if (conta==13 && off==0){
                     isTrue=false;
                     tmp+=",";
                 }

@@ -20,7 +20,9 @@ package lettoreCard;
  * @author france
  */
 public class Anagrafica {
-    //private int id;
+
+    private String dataRil;
+    private String dataSca;
     private String nome;
     private String cognome;
     private String datanascita;
@@ -30,20 +32,36 @@ public class Anagrafica {
     private String comNasc;
     private String comRes;
 
-   
     public Anagrafica(){}
      
     public Anagrafica(String[]info){
         //this.id=id;
-        this.cognome=info[1]; 
-        this.nome=info[2]; 
-        this.datanascita=info[3];
-        this.sesso=info[4]; 
-        this.cf=info[5];
-        this.comNasc=info[6]; 
-        this.comRes=info[7];
+        this.dataRil=info[1];
+        this.dataSca=info[2];
+        this.cognome=info[3]; 
+        this.nome=info[4]; 
+        this.datanascita=info[5];
+        this.sesso=info[6];
+        this.cf=info[7];
+        this.comNasc=info[8]; 
+        this.comRes=info[9];
     }
     
+    public String getDataRil() {
+        return dataRil;
+    }
+
+    public void setDataRil(String dataRil) {
+        this.dataRil = dataRil;
+    }
+
+    public String getDataSca() {
+        return dataSca;
+    }
+    
+    public void setDataSca(String dataSca) {
+        this.dataSca = dataSca;
+    }
     public String getComNasc() {
         return comNasc;
     }
@@ -97,7 +115,7 @@ public class Anagrafica {
     }
 
     /**
-     * @param comune the comune to set
+     * @param comRes the comune to set
      */
     public void setComune(String comRes) {
         this.comRes = comRes;

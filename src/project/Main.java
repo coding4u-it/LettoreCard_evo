@@ -79,6 +79,8 @@ public class Main extends javax.swing.JFrame {
         txtComNascita = new javax.swing.JTextField();
         txtComResidenza = new javax.swing.JTextField();
         cbxApdu = new javax.swing.JComboBox<>();
+        lblDataRil = new javax.swing.JLabel();
+        lblDataSca = new javax.swing.JLabel();
         pnlComuni = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblView = new javax.swing.JTable();
@@ -152,6 +154,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        lblDataRil.setText("Data Rilascio:");
+
+        lblDataSca.setText("Data Scadenza:");
+
         javax.swing.GroupLayout pnlCnsLayout = new javax.swing.GroupLayout(pnlCns);
         pnlCns.setLayout(pnlCnsLayout);
         pnlCnsLayout.setHorizontalGroup(
@@ -172,18 +178,6 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCnsLayout.createSequentialGroup()
                         .addGroup(pnlCnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCnsLayout.createSequentialGroup()
-                                .addGroup(pnlCnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblComNascita)
-                                    .addComponent(lblComResid))
-                                .addGap(23, 23, 23)
-                                .addGroup(pnlCnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCatComNascita, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                    .addComponent(txtCatComResid))
-                                .addGap(18, 18, 18)
-                                .addGroup(pnlCnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtComNascita, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtComResidenza, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(pnlCnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCnsLayout.createSequentialGroup()
                                     .addGroup(pnlCnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +203,21 @@ public class Main extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCnsLayout.createSequentialGroup()
                                     .addComponent(lblLettura, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlCnsLayout.createSequentialGroup()
+                                .addGroup(pnlCnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(lblDataRil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblComNascita, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblComResid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDataSca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(23, 23, 23)
+                                .addGroup(pnlCnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCatComNascita, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                                    .addComponent(txtCatComResid))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlCnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtComNascita, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtComResidenza, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 2, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -252,7 +260,11 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(txtComResidenza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblComResid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCatComResid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblDataRil)
+                .addGap(18, 18, 18)
+                .addComponent(lblDataSca)
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         tbpMain.addTab("CNS Card", pnlCns);
@@ -352,8 +364,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLeggiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeggiActionPerformed
-        cd = new Carta();
-                
+        cd = new Carta();            
         try {
             objCns.leggi();
         } catch (CardException ex) {
@@ -361,11 +372,10 @@ public class Main extends javax.swing.JFrame {
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         if(cd.iniCardReader()){
                 String tmp="",cb=cbxApdu.getSelectedItem().toString();
             try {
-                tmp = cd.leggi(cb, "00B0000000");
+                tmp = cd.leggi(cb,"00B0000000");
             } catch (CardException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -378,6 +388,8 @@ public class Main extends javax.swing.JFrame {
                     txtSex.setText(objAnagrafica.getSesso());
                     txtCatComNascita.setText(objAnagrafica.getComNasc());
                     txtCatComResid.setText(objAnagrafica.getComRes());
+                    lblDataRil.setText(lblDataRil.getText()+" "+objAnagrafica.getDataRil());
+                    lblDataSca.setText(lblDataSca.getText()+" "+objAnagrafica.getDataSca());
                 }
                 else{
                     JOptionPane.showMessageDialog(rootPane, "Inserisci la scheda! e premi ok");
@@ -440,7 +452,7 @@ public class Main extends javax.swing.JFrame {
 
     private void btnCreaCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaCsvActionPerformed
         objFile=new FileOperazioni("esporta.csv");
-        String dati=txtCognome.getText()+";"+txtNome.getText()+";"+txtCF.getText()+";"+txtData.getText()+";"+txtSex.getText()+";"+txtComNascita.getText()+";"+txtComResidenza.getText();
+        String dati=lblDataRil.getText()+";"+lblDataSca.getText()+";"+txtCognome.getText()+";"+txtNome.getText()+";"+txtCF.getText()+";"+txtData.getText()+";"+txtSex.getText()+";"+txtComNascita.getText()+";"+txtComResidenza.getText();
         objFile.scrittura(dati,false);
         txaStampa.append(objFile.getNomeFile());
     }//GEN-LAST:event_btnCreaCsvActionPerformed
@@ -526,6 +538,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel lblComNascita;
     private javax.swing.JLabel lblComResid;
     private javax.swing.JLabel lblData;
+    private javax.swing.JLabel lblDataRil;
+    private javax.swing.JLabel lblDataSca;
     private javax.swing.JLabel lblLettura;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSex;
