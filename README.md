@@ -1,2 +1,2 @@
 # LettoreCard
-lettura smart card
+lettura smart card CNS
